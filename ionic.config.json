@@ -1,0 +1,7 @@
+{
+  "name": "tiba-cosmetic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
