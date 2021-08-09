@@ -25,6 +25,10 @@ const routes: Routes = [
     path: 'cosmetic-contents',
     loadChildren: () => import('./cosmetic-contents/cosmetic-contents.module').then( m => m.CosmeticContentsPageModule)
   },
+  {
+    path: 'welcome',
+    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
 ];
 
 @NgModule({
