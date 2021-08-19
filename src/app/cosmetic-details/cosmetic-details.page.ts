@@ -8,6 +8,10 @@ import { Todo } from 'src/app/shared/todo';
   styleUrls: ['./cosmetic-details.page.scss'],
 })
 export class CosmeticDetailsPage implements OnInit , OnDestroy{
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
 
   todo: Todo;
 

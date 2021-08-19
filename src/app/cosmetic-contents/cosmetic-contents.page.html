@@ -1,44 +1,55 @@
 <ion-header>
   <ion-toolbar color="primary">
-
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>
-      {{todo ? 'edit todo' : 'new todo'}}
-    </ion-title>
+    <ion-title>Cosmetic-Contents</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
+  <!-- refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="refreshPage($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-  <ion-row class="ion-justify-content-center">
-    <ion-col size="12" size-sm="12" size-md="6">
-
-      <form [formGroup]="form">
-
-        <ion-item>
-          <ion-label>title</ion-label>
-          <ion-input type="text" formControlName="title"></ion-input>
-        </ion-item>
-
-
-
-        <ion-item>
-          <ion-label>decription</ion-label>
-          <ion-textarea rows="1" autoGrow formControlName="desc"></ion-textarea>
-        </ion-item>
-
-      </form>
-
-      <ion-button expand="block" shape="round" mode="ios" class="ion-margin-top" [disabled]="!form.valid"
-        (click)="onSubmit()">
-        save
-      </ion-button>
-
-
+  <!-- loading spinner -->
+  <ion-row
+    class="ion-justify-content-center ion-align-items-center height"
+    *ngIf="loading"
+  >
+    <ion-col size="auto">
+      <ion-spinner></ion-spinner>
     </ion-col>
   </ion-row>
 
+  <!-- content -->
+  <ion-row class="ion-justify-content-center" *ngIf="todos">
+    <ion-col size="12" size-sm="12" size-md="6">
+      <ion-card *ngFor="let todo of todos; let i = index">
+        <ion-item lines="none">
+          <ion-label (click)="detail(todo)">
+            <h2>
+              <ion-text> {{todo.title}} </ion-text>
+            </h2>
+            <p>
+              <ion-text> {{todo.desc1}} </ion-text>
+            </p>
+          </ion-label>
+
+
+
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+  <!-- inifinte -->
+  <ion-infinite-scroll
+    threshold="25%"
+    position="bottom"
+    (ionInfinite)="loadData($event)"
+  >
+    <ion-infinite-scroll-content> </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
+
+

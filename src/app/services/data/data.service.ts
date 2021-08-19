@@ -3,48 +3,28 @@ import { Todo } from 'src/app/shared/todo';
 
 const Todos: Todo[] = [
   {
-    title : 'شامبو ايبك',
-    desc:  'مستورد',
+    title : 'شامبوات ',
+    desc1:  'مجموعة من الشامبوات المستوردة والمحلية ',
+    desc2:  'اسحب الى اليمين واليسار للمزيد',
     date : new Date()
   },
 
 
   {
-    title : 'شامبو الامل',
-    desc:  'محلي الصنع',
-    date : new Date()
-  },
+    title : 'صابون ',
+    desc1:  '  مجموعة من الصابون المستورد والمحلي',
+    desc2:  'description',
 
-
-  {
-    title : 'شامبو للشعر الدهني',
-    desc:  'مع لمعان ',
-    date : new Date()
-  },
-
-  {
-    title : 'abq7',
-    desc:  'description',
     date : new Date()
   },
 
   {
     title : 'title',
-    desc:  'description',
+    desc1:  'description',
+    desc2:  'description',
     date : new Date()
   },
 
-  {
-    title : 'title',
-    desc:  'description',
-    date : new Date()
-  },
-
-  {
-    title : 'title',
-    desc:  'description',
-    date : new Date()
-  },
 ];
 
 @Injectable({

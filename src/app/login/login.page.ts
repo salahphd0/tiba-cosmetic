@@ -7,10 +7,6 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  slideOpts = {
-    initialSlide: 1,
-    speed: 400
-  };
   form: FormGroup;
 
   constructor(
@@ -32,7 +28,6 @@ export class LoginPage implements OnInit {
 
 
   onSubmit() {
-    console.log(this.form.value);
     this.navCtrl.navigateForward('/mall');
   }
 

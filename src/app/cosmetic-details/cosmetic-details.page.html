@@ -6,33 +6,70 @@
     </ion-buttons>
 
     <ion-title>
-      details
+     Cosmetic Details
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  <ion-row class="ion-justify-content-center" *ngIf="todo">
-    <ion-col size="12" size-sm="12" size-md="6">
-
-      <ion-card >
-        <ion-card-header>
-          <ion-card-title>
+  <!-- <ion-row class="ion-justify-content-center" *ngIf="todo">
+    <ion-col size="12" size-sm="12" size-md="6"> -->
+      <ion-item >
+        <ion-text>
            {{todo.title}}
-          </ion-card-title>
-          <ion-card-subtitle>
-            {{todo.date | date:'dd/MM/yyyy'}}
-          </ion-card-subtitle>
-          <ion-card-content>
-            {{todo.desc}}
-          </ion-card-content>
-        </ion-card-header>
-      </ion-card>
+           <br>
+            {{todo.desc1}}
+           <br>
+            {{todo.desc2}}
+          </ion-text>
+      </ion-item>
+      <ion-content>
+        <ion-slides pager="true" [options]="slideOpts">
+          <ion-slide>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-subtitle>
+                  <ion-label>شامبو </ion-label>
+                  <ion-icon name="bicycle-outline"></ion-icon>
+                </ion-card-subtitle>
+                <ion-card-title>Card Title</ion-card-title>
+                <img src="assets/imgs/shampoo.jpg" />
+              </ion-card-header>
+
+              <ion-card-content> Keep close </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-subtitle>شامبو</ion-card-subtitle>
+                <ion-card-title>Card Title</ion-card-title>
+                <img src="assets/imgs/shampoo2.jpg" />
+              </ion-card-header>
+
+              <ion-card-content> Keep close </ion-card-content>
+            </ion-card>
+          </ion-slide>
+
+          <ion-slide>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-subtitle>شامبو</ion-card-subtitle>
+                <ion-card-title>Card Title</ion-card-title>
+                <img src="assets/imgs/shampoo3.jpg" />
+              </ion-card-header>
+
+              <ion-card-content> Keep close </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+      </ion-content>
 
 
-      </ion-col>
-      </ion-row>
+
+      <!-- </ion-col>
+      </ion-row> -->
 
 
 </ion-content>
