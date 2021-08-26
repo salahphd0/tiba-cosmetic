@@ -3,38 +3,66 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
-
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },
-
-  {
-    path: 'mall',
-    loadChildren: () => import('./mall/mall.module').then( m => m.MallPageModule)
+    loadChildren: () =>
+      import('./pages/auth/login/login.module').then((m) => m.LoginPageModule),
   },
   {
-    path: 'cosmetic-details',
-    loadChildren: () => import('./cosmetic-details/cosmetic-details.module').then( m => m.CosmeticDetailsPageModule)
+    path: 'register',
+    loadChildren: () =>
+      import('./pages/auth/register/register.module').then(
+        (m) => m.RegisterPageModule
+      ),
   },
   {
-    path: 'cosmetic-contents',
-    loadChildren: () => import('./cosmetic-contents/cosmetic-contents.module').then( m => m.CosmeticContentsPageModule)
+    path: 'profile',
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then((m) => m.ProfilePageModule),
   },
   {
-    path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+    path: 'catalog',
+    loadChildren: () =>
+      import('./pages/catalog/catalog.module').then((m) => m.CatalogPageModule),
+  },
+  {
+    path: 'branches',
+    loadChildren: () =>
+      import('./pages/branches/branches.module').then(
+        (m) => m.BranchesPageModule
+      ),
+  },
+  {
+    path: 'employees',
+    loadChildren: () =>
+      import('./pages/employees/employees.module').then(
+        (m) => m.EmployeesPageModule
+      ),
+  },
+  {
+    path: 'control',
+    loadChildren: () =>
+      import('./pages/control/control.module').then((m) => m.ControlPageModule),
+  },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./pages/checkout/checkout.module').then( m => m.CheckoutPageModule)
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

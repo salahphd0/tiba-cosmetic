@@ -1,0 +1,123 @@
+<ion-content color="light">
+  <div container>
+    <div center column pad-10>
+      <app:logo />
+      <ion-label>Tamwenat</ion-label>
+    </div>
+
+    <ng-container
+      *ngIf="Page === Type.PHONE || Page === Type.PASS || Page === Type.OTP"
+    >
+      <ion-button (click)="Page = Type.LOGIN" fill="clear">
+        <ion-icon slot="start" name="chevron-back"></ion-icon>
+        Back
+      </ion-button>
+    </ng-container>
+    <form [formGroup]="MainForm">
+      <!-- EMAIL FIELD -->
+      <ng-container *ngIf="Page === Type.LOGIN || Page === Type.PASS">
+        <ion-item mode="md" r>
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-input
+            placeholder="Email Address"
+            formControlName="email"
+            type="email"
+            [autocomplete]="'username'"
+            enterkeyhint="next"
+            clearInput
+            [debounce]="500"
+          ></ion-input>
+        </ion-item>
+        <error [control]="controls.email"> </error>
+      </ng-container>
+      <!-- PASSWORD FIELD -->
+      <ng-container *ngIf="Page === Type.LOGIN">
+        <ion-item mode="md" r>
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-input
+            placeholder="Password"
+            formControlName="password"
+            type="password"
+            autocomplete="current-password"
+            enterkeyhint="next"
+            clearInput
+            [debounce]="500"
+          ></ion-input>
+        </ion-item>
+        <error [control]="controls.password"> </error>
+        <ion-button (click)="Page = Type.PASS" fill="clear">
+          Forget Password?
+        </ion-button>
+      </ng-container>
+      <!-- PHONE FIELD -->
+      <ng-container *ngIf="Page === Type.PHONE">
+        <ion-item dir="ltr" mode="md" r>
+          <ion-icon name="call-outline" slot="end"></ion-icon>
+          <ion-select
+            mode="ios"
+            formControlName="country"
+            interface="popover"
+            value="+971"
+          >
+            <ion-select-option *ngFor="let item of Counteries" [value]="item"
+              >{{item.name}}</ion-select-option
+            >
+          </ion-select>
+          <ion-input
+            [placeholder]="MainForm.value.country.sample_phone"
+            formControlName="phone"
+            type="tel"
+            autocomplete="tel"
+            enterkeyhint="next"
+            clearInput
+            [debounce]="500"
+          ></ion-input>
+        </ion-item>
+        <error [control]="controls.phone"> </error>
+      </ng-container>
+    </form>
+    <ng-container *ngIf="Page === Type.OTP">
+      <otp (onFinish)="submit($event + '')"></otp>
+    </ng-container>
+    <div center pad-10>
+      <ion-button (click)="submit()"> Submit </ion-button>
+    </div>
+    <ng-container *ngIf="Page === Type.LOGIN">
+      <div center pad-10>
+        <ion-label size="small" color="medium"> Or Login With </ion-label>
+      </div>
+      <ion-button
+        (click)="google()"
+        expand="block"
+        shape="round"
+        color="google"
+        mb-10
+      >
+        <app:ion-icon slot="start" name="logo-google" left-icon />
+        Google
+      </ion-button>
+      <ion-button expand="block" shape="round" color="facebook" mb-10>
+        <app:ion-icon slot="start" name="logo-facebook" left-icon />
+        Facebook
+      </ion-button>
+      <ion-button (click)="Page = Type.PHONE" expand="block" shape="round">
+        <app:ion-icon slot="start" name="call" left-icon />
+        Phone Number
+      </ion-button>
+    </ng-container>
+  </div>
+  <div center>
+    <ion-button size="small" color="dark" fill="clear">
+      Privacy Policy
+    </ion-button>
+    <ion-button size="small" color="dark" fill="clear">
+      Terms & Conditions
+    </ion-button>
+  </div>
+  <div center>
+    <ion-label size="small" color="medium">
+      All rights reserved &copy; Tamwenat 2021 (V 2.2.2)
+    </ion-label>
+  </div>
+  <div id="recaptcha-container"></div>
+</ion-content>

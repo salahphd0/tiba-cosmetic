@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Checkout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div container>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Order Details</ion-card-subtitle>
+        <ion-card-title>Invoice #000000</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list *ngIf="cartService.getItems as getItems">
+          <ion-list-header>
+            <ion-label>Items</ion-label>
+          </ion-list-header>
+          <ion-item *ngFor="let item of getItems">
+            <ion-label>
+              {{item.amount}} {{UNITS[item.unit]}} - {{item.title}}
+            </ion-label>
+          </ion-item>
+          <ion-list-header>
+            <ion-label>Total</ion-label>
+            <ion-label>{{getItems.length}} items</ion-label>
+          </ion-list-header>
+        </ion-list>
+        <ion-button expand="block"> Complete Order </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

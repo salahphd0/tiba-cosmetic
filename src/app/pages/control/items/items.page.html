@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Items</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div container>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>
+          {{activeItem.uid ? "Edit item" : "Add Item"}}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <image-picker
+            [(image)]="activeItem.thumbnail"
+            path="items"
+          ></image-picker>
+          <ion-item r color="light">
+            <ion-input
+              [(ngModel)]="activeItem.title"
+              placeholder="Title"
+            ></ion-input>
+          </ion-item>
+          <ion-item r color="light">
+            <ion-select
+              style="width: 100%"
+              [(ngModel)]="activeItem.categories"
+              multiple="true"
+              placeholder="Select Categories"
+            >
+              <ion-select-option
+                *ngFor="let category of categories | async"
+                [value]="{title: category.title, uid: category.uid}"
+              >
+                {{category.title}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item r color="light">
+            <ion-select
+              style="width: 100%"
+              [(ngModel)]="activeItem.unit"
+              placeholder="Select Unit"
+            >
+              <ion-select-option *ngFor="let unit of UNITS" [value]="unit">
+                {{unit}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item r color="light">
+            <ion-textarea
+              [(ngModel)]="activeItem.description"
+              placeholder="Description"
+            ></ion-textarea>
+          </ion-item>
+        </ion-list>
+        <ion-button
+          [color]="activeItem.uid ? 'warning' : 'success'"
+          (click)="add()"
+        >
+          {{activeItem.uid ? "Edit" : "Add"}}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none">
+      <ion-item r color="light" *ngFor="let item of items | async">
+        <ion-avatar slot="start">
+          <img [src]="item.thumbnail" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{item.title}}</h2>
+          <p>
+            <ion-chip *ngFor="let category of item.categories">
+              {{category.title}}
+            </ion-chip>
+          </p>
+        </ion-label>
+        <ion-button color="warning" (click)="edit(item)" slot="end">
+          Edit
+        </ion-button>
+        <ion-button color="danger" (click)="delete(item.uid)" slot="end">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

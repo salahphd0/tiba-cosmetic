@@ -1,0 +1,23 @@
+<div
+  *ngIf="image || images"
+  slot="fixed"
+  (click)="dismissModal()"
+  [@inOutAnimation2]
+  class="mainContainer"
+>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button color="light" (click)="dismissModal()">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-slides (click)="$event.stopPropagation()" zoom [options]="sliderConfig">
+    <ion-slide *ngIf="image">
+      <img [src]="image" />
+    </ion-slide>
+    <ng-container *ngIf="images">
+      <ion-slide  *ngFor="let img of images">
+        <img [src]="img" />
+      </ion-slide>
+    </ng-container>
+  </ion-slides>
+</div>

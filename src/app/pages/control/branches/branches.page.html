@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Profiles</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div container>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Add New Branch</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <image-picker
+            [(image)]="activeBranch.thumbnail"
+            path="profiles"
+          ></image-picker>
+          <ion-item r color="light">
+            <ion-input
+              [(ngModel)]="activeBranch.displayName"
+              placeholder="Branch name"
+            ></ion-input>
+          </ion-item>
+          <ion-item r color="light">
+            <ion-input
+              [(ngModel)]="activeBranch.location.address"
+              placeholder="Branch name"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item r color="light">
+            <ion-input
+              [(ngModel)]="activeBranch.passcode"
+              placeholder="passcode"
+              maxlength="4"
+              minlength="4"
+              min="0000"
+              max="9999"
+              type="text"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button (click)="add()"> Add </ion-button>
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none"> </ion-list>
+  </div>
+</ion-content>

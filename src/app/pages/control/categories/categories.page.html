@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Categories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div container>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Add New Category</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <image-picker
+            [(image)]="activeCategory.thumbnail"
+            path="categories"
+          ></image-picker>
+          <ion-item r color="light">
+            <ion-input
+              [(ngModel)]="activeCategory.title"
+              placeholder="Title"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button (click)="add()"> Add </ion-button>
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none">
+      <ion-item r color="light" *ngFor="let category of categories | async">
+        <ion-avatar slot="start">
+          <img [src]="category.thumbnail" />
+        </ion-avatar>
+        <ion-label>{{category.title}}</ion-label>
+        <!-- <ion-toggle
+          (ionChange)="toggle(category.uid, category.active)"
+          [checked]="category.active"
+          slot="end"
+        ></ion-toggle> -->
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

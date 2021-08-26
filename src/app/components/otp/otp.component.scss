@@ -1,0 +1,56 @@
+.otp {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  .field {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--ion-color-medium);
+    border-radius: 4px;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: 900;
+    transition: all 0.5s ease;
+    .blinker {
+      width: 2px;
+      height: 25px;
+      background: var(--ion-color-primary);
+      animation: blinking 1s infinite;
+    }
+  }
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  display: none;
+}
+.done {
+  border-radius: 50% !important;
+  background-color: var(--ion-color-primary);
+  color: white;
+  border-color: transparent !important;
+  transform: scale(0.9);
+}
+#single-factor-code-text-field {
+  opacity: 0;
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  transform: scale(0);
+}
+@keyframes blinking {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

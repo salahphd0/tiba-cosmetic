@@ -1,0 +1,24 @@
+<input
+  type="text"
+  (blur)="isFocused = false"
+  (focus)="isFocused = true"
+  (input)="detect($event)"
+  maxlength="6"
+  id="single-factor-code-text-field"
+  autocomplete="one-time-code"
+  inputmode="numeric"
+/>
+<br />
+<p>Enter The OTP</p>
+<label dir="ltr" for="single-factor-code-text-field" class="otp">
+  <div
+    class="field"
+    *ngFor="let item of [].constructor(length); let i = index"
+    [ngClass]="{ done: getText(i) !== '|' && position >= i + 1 }"
+  >
+    <span *ngIf="getText(i) !== '|'; else blinker">{{ getText(i) }}</span>
+    <ng-template #blinker>
+      <span *ngIf="isFocused" class="blinker"></span>
+    </ng-template>
+  </div>
+</label>

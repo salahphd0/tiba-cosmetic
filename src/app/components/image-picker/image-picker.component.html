@@ -1,0 +1,52 @@
+<image-viewer
+  slot="fixed"
+  [image]="selectedImage"
+  (onClose)="selectedImage = null"
+></image-viewer>
+<!-- Multiple Images -->
+<ion-item r *ngFor="let img of images; let i = index" color="medium">
+  <ion-thumbnail (click)="selectedImage = img" slot="start">
+    <ion-img [src]="img"></ion-img>
+  </ion-thumbnail>
+  <ion-label (click)="selectedImage = img">
+    <h3>Image #{{ i + 1 }}</h3>
+    <p>Click to view</p>
+  </ion-label>
+  <ion-button slot="end" fill="clear" color="light" (click)="removeImage(img)">
+    <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+  </ion-button>
+</ion-item>
+<!-- Single Image -->
+<ion-item r *ngIf="image" color="medium">
+  <ion-thumbnail slot="start" (click)="selectedImage = image">
+    <ion-img [src]="image"></ion-img>
+  </ion-thumbnail>
+  <ion-label (click)="selectedImage = image">
+    <h3>Thumbnail</h3>
+    <p>Click to view</p>
+  </ion-label>
+  <ion-button
+    slot="end"
+    fill="clear"
+    color="light"
+    (click)="removeImage(image)"
+  >
+    <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+  </ion-button>
+</ion-item>
+
+<label *ngIf="multiple || !image" (click)="fileUploader.click()">
+  <ion-item r button detail="true" detailIcon="camera" color="light">
+    <ion-icon slot="start" name="image-outline"></ion-icon>
+    <ion-label>Select {{ multiple ? "Images" : "image" }}</ion-label>
+  </ion-item>
+</label>
+
+<input
+  #fileUploader
+  style="display: none"
+  type="file"
+  accept="image/*"
+  [multiple]="multiple"
+  (change)="upload($event)"
+/>
